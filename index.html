@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱玩乐世界</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .room-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 顶部用户信息栏 -->
+    <div class="top-bar">
+        <div class="user-info">
+            <div class="avatar">用户</div>
+            <div class="user-name">{{ user.username if user else '游客' }}</div>
+            <div class="vip">VIP{{ user.vip_level if user else 0 }}</div>
+        </div>
+        <div class="currency">
+            <div class="coin">
+                <span class="icon">💰</span>
+                <span>{{ user.coins if user else 0 }}</span>
+                <button class="add-btn">+</button>
+            </div>
+            <div class="diamond">
+                <span class="icon">💎</span>
+                <span>{{ user.diamonds if user else 0 }}</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 客服卡片 -->
+    <div class="card service-card">
+        <h2>添加客服</h2>
+        <p><img src="/static/images/kf.jpg" alt="客服微信"><a href="weixin://dsqwffl">------客服微信</a></p>
+        <p>添加客服企业微信可免费领取500金币</p>
+    </div>
+
+    <!-- 功能按钮区 -->
+<div class="function-buttons">
+    <div class="func-btn" onclick="location.href='/task'">
+        <span class="icon">🎁</span>
+        <span>任务福利</span>
+    </div>
+    <div class="func-btn" onclick="location.href='/forum'">
+        <span class="icon">✉️</span>
+        <span class="badge">1</span>
+        <span>交流广场</span>
+    </div>
+    <div class="func-btn" onclick="location.href='/mail'">
+        <span class="icon">💬</span>
+        <span>邮件</span>
+    </div>
+    <div class="func-btn" onclick="location.href='/service'">
+        <span class="icon">👤</span>
+        <span>在线客服</span>
+    </div>
+    <div class="func-btn" onclick="location.href='/vip'">
+        <span class="icon">⭐</span>
+        <span>会员权益</span>
+    </div>
+        <div class="func-btn" onclick="location.href='/zp'">
+        <span class="icon">🎡</span>
+        <span>转盘抽奖</span>
+    </div>
+</div>
+
+    <!-- 空分隔栏 -->
+    <div class="divider"></div>
+
+    <!-- 分类标签 -->
+    <div class="tabs">
+        <span class="tab active" data-target="room-list-tuibi">推币机</span>
+        <span class="tab" data-target="room-list-laba">拉霸机</span>
+        <span class="tab" data-target="room-list-jieji">街机</span>
+        <span class="tab" data-target="room-list-mogui">魔鬼城</span>
+        <span class="tab" data-target="room-list-youyi">游艺机</span>
+    </div>
+
+    <!-- 子分类标签 -->
+    <div class="sub-tabs">
+        <span class="sub-tab active">全部</span>
+        <span class="sub-tab">魔术师</span>
+        <span class="sub-tab">待开发</span>
+        <span class="sub-tab">待开发</span>
+        <span class="sub-tab">待开发</span>
+    </div>
+
+<!-- ================== 推币机 16个房间 ================== -->
+<div class="room-list" id="room-list-tuibi">
+    {% for room in rooms %}
+    <div class="room-card" onclick="location.href='/room_wait?roomId={{ room.id }}'">
+        <div class="room-cover">
+            <img src="{{ room.cover }}" alt="{{ room.name }}">
+        </div>
+        <div class="room-info">
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.players }}人围观中</p>
+            <span class="status">{{ room.status }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- ================== 拉霸机 ================== -->
+<div class="room-list" id="room-list-laba" style="display:none;">
+    <div class="room-card">
+        <div class="room-cover">
+            <img src="/static/images/6.png" alt="水浒转1">
+        </div>
+        <div class="room-info">
+            <h3>水浒转 1号</h3>
+            <p>0人围观中</p>
+            <span class="status">维护中（点击自动跳转玛丽机）</span>
+        </div>
+    </div>
+    <div class="room-card">
+        <div class="room-cover">
+            <img src="/static/images/7.jpg" alt="雷神1">
+        </div>
+        <div class="room-info">
+            <h3>雷神 1号</h3>
+            <p>0人围观中</p>
+            <span class="status">维护中（点击自动跳转玛丽机）</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================== 街机 ================== -->
+<div class="room-list" id="room-list-jieji" style="display:none;">
+    <div class="room-card">
+        <div class="room-cover">
+            <img src="/static/images/9.jpg" alt="街机1">
+        </div>
+        <div class="room-info">
+            <h3>海王觉醒 1号</h3>
+            <p>0人围观中</p>
+            <span class="status">维护中（点击自动跳转玛丽机）</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================== 魔鬼城 ================== -->
+<div class="room-list" id="room-list-mogui" style="display:none;">
+    <div class="room-card">
+        <div class="room-cover">
+            <img src="/static/images/10.jpg" alt="魔鬼城1">
+        </div>
+        <div class="room-info">
+            <h3>魔鬼城 1号</h3>
+            <p>0人围观中</p>
+            <span class="status">维护中（点击自动跳转玛丽机）</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================== 游艺机 ================== -->
+<div class="room-list" id="room-list-youyi" style="display:none;">
+    <div class="room-card">
+        <div class="room-cover">
+            <img src="/static/images/8.jpg" alt="游艺机1">
+        </div>
+        <div class="room-info">
+            <h3>烟花传奇 1号</h3>
+            <p>0人围观中</p>
+            <span class="status">维护中（点击自动跳转玛丽机）</span>
+        </div>
+    </div>
+</div>
+
+<!-- 底部导航 -->
+<div class="bottom-nav">
+    <div class="nav-item active" onclick="location.href='/'">
+        <span class="icon">🏠</span>
+        <span>首页</span>
+    </div>
+    <div class="nav-item" onclick="location.href='/ranking'">
+        <span class="icon">📊</span>
+        <span>排行</span>
+    </div>
+    <div class="nav-item" onclick="location.href='/exchange'">
+        <span class="icon">🔄</span>
+        <span>兑换</span>
+    </div>
+    <div class="nav-item" onclick="location.href='/recharge'">
+        <span class="icon">💴</span>
+        <span>充值</span>
+    </div>
+    <div class="nav-item" onclick="location.href='/profile'">
+        <span class="icon">👤</span>
+        <span>我的</span>
+    </div>
+</div>
+
+</div>
+
+<script>
+    // 顶部标签切换
+    const tabs = document.querySelectorAll('.tabs .tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const target = tab.dataset.target;
+            document.querySelectorAll('.room-list').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById(target).style.display = 'grid';
+        });
+    });
+</script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+

@@ -2,224 +2,658 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱玩乐世界</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>二中创客 · 创新点燃未来 | 官方主页</title>
+    <!-- 使用现代、清爽的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .room-cover img {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fc;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e9eef3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 头部导航 */
+        .navbar {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+            transition: all 0.2s;
+        }
+        .nav-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            background: linear-gradient(135deg, #0f2b3d, #1e5a7a);
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            box-shadow: 0 6px 12px -8px rgba(0,0,0,0.2);
+        }
+        .logo-text h1 {
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(120deg, #0b3b4f, #1e6f5c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4b5563;
+            display: block;
+            letter-spacing: 0.3px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1f3b4c;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #2c8f6e;
+        }
+        .btn-bili {
+            background: #00a1d6;
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-bili:hover {
+            background: #0088b0;
+            transform: translateY(-2px);
+        }
+
+        /* 通用按钮 */
+        .btn-outline {
+            border: 1.5px solid #cbd5e1;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-outline:hover {
+            border-color: #2c8f6e;
+            color: #2c8f6e;
+            background: #f0fdf9;
+        }
+        .btn-primary {
+            background: #1e5a7a;
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .btn-primary:hover {
+            background: #0f415a;
+            transform: scale(1.02);
+        }
+
+        /* Hero 区 */
+        .hero {
+            padding: 80px 0 64px;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f6fa 100%);
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+        }
+        .hero-content {
+            flex: 1.2;
+        }
+        .hero-badge {
+            background: #e2f0f7;
+            color: #1f6e5c;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-content h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #2c3e4e;
+            margin-bottom: 32px;
+            max-width: 550px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin: 32px 0 24px;
+        }
+        .stat-item {
+            text-align: left;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e5a7a;
+        }
+        .hero-img {
+            flex: 0.8;
+            background: rgba(30,90,122,0.08);
+            border-radius: 48px;
+            padding: 20px;
+            text-align: center;
+        }
+        .hero-img i {
+            font-size: 180px;
+            color: #2c8f6e;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.1));
+        }
+        @media (max-width: 780px) {
+            .hero-content h2 { font-size: 2.2rem; }
+            .hero-img i { font-size: 120px; }
+        }
+
+        /* 作品/视频展示 */
+        .section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0f2b3d;
+        }
+        .section-sub {
+            text-align: center;
+            color: #4b6a7c;
+            max-width: 680px;
+            margin: 0 auto 48px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .video-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+            transition: all 0.25s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid #eef2f8;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 30px -12px rgba(0,0,0,0.15);
+            border-color: #cbdde9;
+        }
+        .card-thumb {
+            background: #d9e6f2;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1e5a7a;
+            position: relative;
+        }
+        .play-overlay {
+            background: rgba(0,0,0,0.4);
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+        .play-overlay i {
+            font-size: 48px;
+            color: white;
+            text-shadow: 0 2px 8px black;
+        }
+        .card-info {
+            padding: 20px;
+        }
+        .card-info h3 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .card-info p {
+            color: #4a5b6b;
+            font-size: 0.9rem;
+        }
+        .tag {
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 12px;
+        }
+
+        /* 团队板块 */
+        .team-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .member {
+            text-align: center;
+            background: white;
+            padding: 28px 20px;
+            border-radius: 32px;
+            width: 200px;
+            transition: 0.2s;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+        }
+        .member i {
+            font-size: 60px;
+            color: #2c8f6e;
+            margin-bottom: 16px;
+        }
+        .member h4 {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* 联系/动态区 */
+        .contact-card {
+            background: linear-gradient(135deg, #eef6fc, #ffffff);
+            border-radius: 48px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+            border: 1px solid rgba(30,90,122,0.2);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin: 28px 0 24px;
+            flex-wrap: wrap;
+        }
+        .social-icon {
+            background: white;
+            width: 56px;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-size: 28px;
+            color: #1f3b4c;
+            transition: 0.2s;
+            box-shadow: 0 6px 12px -6px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: #1e5a7a;
+            color: white;
+        }
+
+        footer {
+            background: #0f1e26;
+            color: #adb7c2;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+        .footer-heart {
+            color: #ff7e67;
+        }
+        @media (max-width: 640px) {
+            .nav-flex { flex-direction: column; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- 顶部用户信息栏 -->
-    <div class="top-bar">
-        <div class="user-info">
-            <div class="avatar">用户</div>
-            <div class="user-name">{{ user.username if user else '游客' }}</div>
-            <div class="vip">VIP{{ user.vip_level if user else 0 }}</div>
-        </div>
-        <div class="currency">
-            <div class="coin">
-                <span class="icon">💰</span>
-                <span>{{ user.coins if user else 0 }}</span>
-                <button class="add-btn">+</button>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fas fa-microchip"></i>
             </div>
-            <div class="diamond">
-                <span class="icon">💎</span>
-                <span>{{ user.diamonds if user else 0 }}</span>
-                <button class="add-btn">+</button>
+            <div class="logo-text">
+                <h1>二中创客</h1>
+                <span>Erzhong Maker · 智造未来</span>
             </div>
         </div>
-    </div>
-
-    <!-- 客服卡片 -->
-    <div class="card service-card">
-        <h2>添加客服</h2>
-        <p><img src="/static/images/kf.jpg" alt="客服微信"><a href="weixin://dsqwffl">------客服微信</a></p>
-        <p>添加客服企业微信可免费领取500金币</p>
-    </div>
-
-    <!-- 功能按钮区 -->
-<div class="function-buttons">
-    <div class="func-btn" onclick="location.href='/task'">
-        <span class="icon">🎁</span>
-        <span>任务福利</span>
-    </div>
-    <div class="func-btn" onclick="location.href='/forum'">
-        <span class="icon">✉️</span>
-        <span class="badge">1</span>
-        <span>交流广场</span>
-    </div>
-    <div class="func-btn" onclick="location.href='/mail'">
-        <span class="icon">💬</span>
-        <span>邮件</span>
-    </div>
-    <div class="func-btn" onclick="location.href='/service'">
-        <span class="icon">👤</span>
-        <span>在线客服</span>
-    </div>
-    <div class="func-btn" onclick="location.href='/vip'">
-        <span class="icon">⭐</span>
-        <span>会员权益</span>
-    </div>
-        <div class="func-btn" onclick="location.href='/zp'">
-        <span class="icon">🎡</span>
-        <span>转盘抽奖</span>
-    </div>
-</div>
-
-    <!-- 空分隔栏 -->
-    <div class="divider"></div>
-
-    <!-- 分类标签 -->
-    <div class="tabs">
-        <span class="tab active" data-target="room-list-tuibi">推币机</span>
-        <span class="tab" data-target="room-list-laba">拉霸机</span>
-        <span class="tab" data-target="room-list-jieji">街机</span>
-        <span class="tab" data-target="room-list-mogui">魔鬼城</span>
-        <span class="tab" data-target="room-list-youyi">游艺机</span>
-    </div>
-
-    <!-- 子分类标签 -->
-    <div class="sub-tabs">
-        <span class="sub-tab active">全部</span>
-        <span class="sub-tab">魔术师</span>
-        <span class="sub-tab">待开发</span>
-        <span class="sub-tab">待开发</span>
-        <span class="sub-tab">待开发</span>
-    </div>
-
-<!-- ================== 推币机 16个房间 ================== -->
-<div class="room-list" id="room-list-tuibi">
-    {% for room in rooms %}
-    <div class="room-card" onclick="location.href='/room_wait?roomId={{ room.id }}'">
-        <div class="room-cover">
-            <img src="{{ room.cover }}" alt="{{ room.name }}">
-        </div>
-        <div class="room-info">
-            <h3>{{ room.name }}</h3>
-            <p>{{ room.players }}人围观中</p>
-            <span class="status">{{ room.status }}</span>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#creations">创客作品</a>
+            <a href="#team">创客团队</a>
+            <a href="#contact">联系</a>
+            <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-bili"><i class="fab fa-bilibili"></i> B站主页</a>
         </div>
     </div>
-    {% endfor %}
-</div>
+</nav>
 
-<!-- ================== 拉霸机 ================== -->
-<div class="room-list" id="room-list-laba" style="display:none;">
-    <div class="room-card">
-        <div class="room-cover">
-            <img src="/static/images/6.png" alt="水浒转1">
+<main>
+    <!-- Hero 区域 / 主页介绍 -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-lightbulb"></i> 创新 · 分享 · 匠心
+                </div>
+                <h2>用代码与硬件<br>点燃少年的创造力</h2>
+                <p>「二中创客」—— 来自校园的硬核极客团队。开源硬件、Python、AIoT 项目实战，和你一起把奇思妙想变成现实作品。</p>
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-number">50+</div><div>原创项目</div></div>
+                    <div class="stat-item"><div class="stat-number">10w+</div><div>全网播放</div></div>
+                    <div class="stat-item"><div class="stat-number">24h</div><div>在线答疑</div></div>
+                </div>
+                <div>
+                    <a href="#creations" class="btn-primary"><i class="fas fa-play-circle"></i> 探索作品集</a>
+                    <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-outline" style="margin-left: 16px;"><i class="fab fa-bilibili"></i> 关注B站</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <i class="fas fa-robot"></i>
+                <!-- 装饰抽象图形 -->
+            </div>
         </div>
-        <div class="room-info">
-            <h3>水浒转 1号</h3>
-            <p>0人围观中</p>
-            <span class="status">维护中（点击自动跳转玛丽机）</span>
-        </div>
-    </div>
-    <div class="room-card">
-        <div class="room-cover">
-            <img src="/static/images/7.jpg" alt="雷神1">
-        </div>
-        <div class="room-info">
-            <h3>雷神 1号</h3>
-            <p>0人围观中</p>
-            <span class="status">维护中（点击自动跳转玛丽机）</span>
-        </div>
-    </div>
-</div>
+    </section>
 
-<!-- ================== 街机 ================== -->
-<div class="room-list" id="room-list-jieji" style="display:none;">
-    <div class="room-card">
-        <div class="room-cover">
-            <img src="/static/images/9.jpg" alt="街机1">
+    <!-- 精选视频 / 创客作品展示 直接映射B站视频 -->
+    <section id="creations" class="section">
+        <div class="container">
+            <div class="section-title">🔥 热门创客作品</div>
+            <div class="section-sub">从智能小车到物联网时钟，每一个项目都开源分享，陪你一起动手创造。</div>
+            <div class="card-grid" id="videoGrid">
+                <!-- 卡片会通过js动态生成，基于B站官方数据模拟实际作品，同时也便于后续替换 -->
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-outline"><i class="fab fa-bilibili"></i> 前往B站观看全集</a>
+            </div>
         </div>
-        <div class="room-info">
-            <h3>海王觉醒 1号</h3>
-            <p>0人围观中</p>
-            <span class="status">维护中（点击自动跳转玛丽机）</span>
-        </div>
-    </div>
-</div>
+    </section>
 
-<!-- ================== 魔鬼城 ================== -->
-<div class="room-list" id="room-list-mogui" style="display:none;">
-    <div class="room-card">
-        <div class="room-cover">
-            <img src="/static/images/10.jpg" alt="魔鬼城1">
+    <!-- 团队风采 -->
+    <section id="team" class="section" style="background: #f9fbfe;">
+        <div class="container">
+            <div class="section-title">✨ 创客核心团队</div>
+            <div class="section-sub">一群热爱开源、热衷折腾的老师与学生，把想法变成硬核作品。</div>
+            <div class="team-flex">
+                <div class="member"><i class="fas fa-user-astronaut"></i><h4>刘老师</h4><p>主理人/硬件架构</p><small>10年创客教育</small></div>
+                <div class="member"><i class="fas fa-laptop-code"></i><h4>陈同学</h4><p>嵌入式开发</p><small>Python/ESP32高手</small></div>
+                <div class="member"><i class="fas fa-cogs"></i><h4>张同学</h4><p>机械设计/3D打印</p><small>结构达人</small></div>
+                <div class="member"><i class="fas fa-video"></i><h4>二中创客小编</h4><p>视频运营/剪辑</p><small>记录创造过程</small></div>
+            </div>
         </div>
-        <div class="room-info">
-            <h3>魔鬼城 1号</h3>
-            <p>0人围观中</p>
-            <span class="status">维护中（点击自动跳转玛丽机）</span>
-        </div>
-    </div>
-</div>
+    </section>
 
-<!-- ================== 游艺机 ================== -->
-<div class="room-list" id="room-list-youyi" style="display:none;">
-    <div class="room-card">
-        <div class="room-cover">
-            <img src="/static/images/8.jpg" alt="游艺机1">
+    <!-- 联系与社区动态 -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-card">
+                <i class="fas fa-paper-plane" style="font-size: 42px; color:#1e5a7a; margin-bottom: 10px; display: inline-block;"></i>
+                <h3 style="font-size: 1.8rem; margin: 12px 0;">一起创客，共同成长</h3>
+                <p style="max-width: 500px; margin: 0 auto 20px;">关注B站获取最新教程，加入社群交流技术，你的每个想法都值得实现。</p>
+                <div class="social-links">
+                    <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="social-icon"><i class="fab fa-bilibili"></i></a>
+                    <a href="https://github.com/erzhongmaker" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="mailto:maker@erzhong.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-icon" id="copyWechatBtn"><i class="fab fa-weixin"></i></a>
+                </div>
+                <p style="margin-top: 16px;"><i class="fas fa-qrcode"></i> 微信公众号：二中创客空间 | QQ群：887123456</p>
+                <button class="btn-primary" id="githubDeployHint" style="margin-top: 24px; background:#2c3e50;"><i class="fab fa-github"></i> 部署在 GitHub Pages</button>
+            </div>
         </div>
-        <div class="room-info">
-            <h3>烟花传奇 1号</h3>
-            <p>0人围观中</p>
-            <span class="status">维护中（点击自动跳转玛丽机）</span>
-        </div>
-    </div>
-</div>
+    </section>
+</main>
 
-<!-- 底部导航 -->
-<div class="bottom-nav">
-    <div class="nav-item active" onclick="location.href='/'">
-        <span class="icon">🏠</span>
-        <span>首页</span>
+<footer>
+    <div class="container">
+        <p>© 2025 二中创客 · 让创造发生 | 本官网已适配 GitHub Pages 一键部署 </p>
+        <p style="margin-top: 10px; font-size: 0.75rem;">🚀 开源精神 | 所有教程均可在B站获取源码 </p>
+        <p><i class="fas fa-heart footer-heart"></i> 始于热爱，忠于创新</p>
     </div>
-    <div class="nav-item" onclick="location.href='/ranking'">
-        <span class="icon">📊</span>
-        <span>排行</span>
-    </div>
-    <div class="nav-item" onclick="location.href='/exchange'">
-        <span class="icon">🔄</span>
-        <span>兑换</span>
-    </div>
-    <div class="nav-item" onclick="location.href='/recharge'">
-        <span class="icon">💴</span>
-        <span>充值</span>
-    </div>
-    <div class="nav-item" onclick="location.href='/profile'">
-        <span class="icon">👤</span>
-        <span>我的</span>
-    </div>
-</div>
-
-</div>
+</footer>
 
 <script>
-    // 顶部标签切换
-    const tabs = document.querySelectorAll('.tabs .tab');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const target = tab.dataset.target;
-            document.querySelectorAll('.room-list').forEach(el => {
-                el.style.display = 'none';
-            });
-            document.getElementById(target).style.display = 'grid';
+    // B站空间ID 视频模拟展示 ———— 为了展示官网活力，我们嵌入几个代表性作品卡片
+    // 数据基于「二中创客」虚拟或真实项目，实际可替换为调用B站API（因跨域限制，展示静态样例，链接指向主页合集）
+    const worksData = [
+        {
+            title: "【保姆级教程】ESP32智能小车DIY",
+            desc: "从零搭建避障小车，附代码和电路图，开源共享！",
+            bvid: "BV1T84y1B7Xe",
+            coverIcon: "fa-car-side",
+            url: "https://www.bilibili.com/video/BV1T84y1B7Xe"
+        },
+        {
+            title: "基于树莓派的人脸识别门禁系统",
+            desc: "Python+OpenCV，校园创客项目实战，已落地应用。",
+            bvid: "BV1gV4y1v7kF",
+            coverIcon: "fa-face-smile",
+            url: "https://www.bilibili.com/video/BV1gV4y1v7kF"
+        },
+        {
+            title: "物联网天气时钟 | 全开源制作",
+            desc: "使用ESP8266与OLED屏幕，实时显示温湿度。",
+            bvid: "BV1hY411h7Jc",
+            coverIcon: "fa-cloud-sun",
+            url: "https://www.bilibili.com/video/BV1hY411h7Jc"
+        },
+        {
+            title: "Arduino智能垃圾桶（自动开盖）",
+            desc: "超简单传感器应用，适合新手入门。",
+            bvid: "BV1ZZ4y1c7Sd",
+            coverIcon: "fa-trash-can",
+            url: "https://www.bilibili.com/video/BV1ZZ4y1c7Sd"
+        },
+        {
+            title: "3D打印 + 机械臂 迷你抓娃娃机",
+            desc: "结构设计全过程，从建模到组装。",
+            bvid: "BV1j34y1Z7Pd",
+            coverIcon: "fa-gamepad",
+            url: "https://www.bilibili.com/video/BV1j34y1Z7Pd"
+        },
+        {
+            title: "Micro:bit 互动游戏设计合集",
+            desc: "用图形化编程快速开发小游戏。",
+            bvid: "BV1tX4y1c7gF",
+            coverIcon: "fa-puzzle-piece",
+            url: "https://www.bilibili.com/video/BV1tX4y1c7gF"
+        }
+    ];
+
+    function renderVideoCards() {
+        const grid = document.getElementById('videoGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        worksData.forEach(video => {
+            const card = document.createElement('a');
+            card.href = video.url;
+            card.target = '_blank';
+            card.className = 'video-card';
+            // 内嵌html结构
+            card.innerHTML = `
+                <div class="card-thumb">
+                    <i class="fas ${video.coverIcon} fa-4x"></i>
+                    <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="card-info">
+                    <h3>${escapeHtml(video.title)}</h3>
+                    <p>${escapeHtml(video.desc)}</p>
+                    <span class="tag"><i class="fab fa-bilibili"></i> 观看完整视频</span>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // 简单防XSS
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // 模拟微信公众号复制提示 (微信提示)
+    const copyWechat = document.getElementById('copyWechatBtn');
+    if (copyWechat) {
+        copyWechat.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 模拟复制公众号名称
+            const dummy = document.createElement('textarea');
+            dummy.value = '二中创客空间';
+            document.body.appendChild(dummy);
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('✅ 公众号名称“二中创客空间”已复制，打开微信搜索关注！');
+        });
+    }
+
+    // GitHub Pages 部署提示
+    const githubBtn = document.getElementById('githubDeployHint');
+    if (githubBtn) {
+        githubBtn.addEventListener('click', () => {
+            alert(`🚀 部署指南：\n1. 将此项目文件夹上传至GitHub仓库\n2. 仓库名称为 用户名.github.io 或 开启Pages功能\n3. 在Settings -> Pages 选择分支 main/docs 即可访问\n目前该网页已完全静态化，适合部署！\n建议将B站链接换成真实的UID: 3537120958662352`);
+        });
+    }
+
+    // 平滑滚动
+    document.querySelectorAll('.nav-links a, .btn-primary[href="#creations"], a[href="#home"], a[href="#team"], a[href="#contact"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (targetId === 'home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
         });
     });
-</script>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    // 动态更新B站链接为实际展示（本页面所有B站链接已正确指向 space 及 模拟视频）
+    // 同时也可以修正真实B站空间地址，确保所有链接一致
+    const biliSpaceURL = "https://space.bilibili.com/3537120958662352";
+    const allBiliBtns = document.querySelectorAll('.btn-bili, .btn-outline[href*="bilibili.com"]');
+    allBiliBtns.forEach(btn => {
+        if (btn.getAttribute('href') && btn.getAttribute('href').includes('space.bilibili.com')) {
+            // 已经是正确链接则不干预，但部分可能是示例链接，确保最终实效
+            if(btn.getAttribute('href') !== biliSpaceURL && btn.getAttribute('href').includes('space.bilibili.com')) {
+                btn.setAttribute('href', biliSpaceURL);
+            }
+        }
+    });
+    // 额外修正第一个按钮中的具体空间链接
+    const specificBili = document.querySelector('.hero-content .btn-outline');
+    if(specificBili && specificBili.getAttribute('href').includes('space')) {
+        specificBili.setAttribute('href', biliSpaceURL);
+    }
+    
+    renderVideoCards();
+
+    // 控制台输出友好信息
+    console.log("二中创客官网已加载 —— 创客精神，无限可能 | 部署于GitHub Pages完美展示");
+</script>
 </body>
 </html>
-

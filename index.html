@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>二中创客 · 创新点燃未来 | 官方主页</title>
-    <!-- 使用现代、清爽的字体 -->
+    <title>二中创客 · 开源创造未来 | 官方主页</title>
+    <!-- 现代字体 & 图标库 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- FontAwesome 6 (免费图标库) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -23,29 +22,19 @@
             scroll-behavior: smooth;
         }
 
-        /* 自定义滚动条 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e9eef3;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        /* 滚动条美化 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e9eef3; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* 容器 */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* 头部导航 */
+        /* 导航栏 */
         .navbar {
             background: rgba(255,255,255,0.96);
             backdrop-filter: blur(8px);
@@ -53,7 +42,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 16px 0;
+            padding: 12px 0;
             transition: all 0.2s;
         }
         .nav-flex {
@@ -67,21 +56,18 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            cursor: pointer;
         }
-        .logo-icon {
-            background: linear-gradient(135deg, #0f2b3d, #1e5a7a);
-            width: 44px;
-            height: 44px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: white;
-            box-shadow: 0 6px 12px -8px rgba(0,0,0,0.2);
+        /* logo图片样式，根目录1.png */
+        .logo-img {
+            height: 52px;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+            border-radius: 12px;
         }
         .logo-text h1 {
-            font-size: 1.65rem;
+            font-size: 1.5rem;
             font-weight: 800;
             letter-spacing: -0.3px;
             background: linear-gradient(120deg, #0b3b4f, #1e6f5c);
@@ -90,60 +76,85 @@
             color: transparent;
         }
         .logo-text span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
             color: #4b5563;
             display: block;
-            letter-spacing: 0.3px;
         }
-        .nav-links {
+        /* 选项卡导航 */
+        .nav-tabs {
             display: flex;
-            gap: 28px;
-            align-items: center;
+            gap: 12px;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
         }
-        .nav-links a {
-            text-decoration: none;
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 22px;
+            border-radius: 40px;
             font-weight: 600;
+            font-size: 0.95rem;
             color: #1f3b4c;
+            cursor: pointer;
             transition: 0.2s;
-            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
         }
-        .nav-links a:hover {
-            color: #2c8f6e;
+        .tab-btn.active {
+            background: white;
+            color: #1e5a7a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .btn-bili {
+        .tab-btn:hover:not(.active) {
+            background: #e2e8f0;
+            color: #0f415a;
+        }
+        .bili-link-small {
             background: #00a1d6;
             color: white !important;
             padding: 8px 18px;
             border-radius: 40px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
+            font-weight: 600;
             transition: 0.2s;
         }
-        .btn-bili:hover {
+        .bili-link-small:hover {
             background: #0088b0;
             transform: translateY(-2px);
         }
 
-        /* 通用按钮 */
-        .btn-outline {
-            border: 1.5px solid #cbd5e1;
-            background: transparent;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.2s;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        /* 页面区块通用 */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
         }
-        .btn-outline:hover {
-            border-color: #2c8f6e;
-            color: #2c8f6e;
-            background: #f0fdf9;
+        .page-section.active-section {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* 通用组件 */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: #0f2b3d;
+        }
+        .section-sub {
+            text-align: center;
+            color: #4b6a7c;
+            max-width: 680px;
+            margin: 0 auto 48px;
         }
         .btn-primary {
             background: #1e5a7a;
@@ -157,151 +168,68 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .btn-primary:hover {
             background: #0f415a;
             transform: scale(1.02);
         }
-
-        /* Hero 区 */
-        .hero {
-            padding: 80px 0 64px;
-            background: linear-gradient(145deg, #ffffff 0%, #f0f6fa 100%);
-        }
-        .hero-grid {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 48px;
-        }
-        .hero-content {
-            flex: 1.2;
-        }
-        .hero-badge {
-            background: #e2f0f7;
-            color: #1f6e5c;
-            display: inline-block;
-            padding: 4px 14px;
+        .btn-outline {
+            border: 1.5px solid #cbd5e1;
+            background: transparent;
+            padding: 8px 20px;
             border-radius: 40px;
-            font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: #1f3b4c;
         }
-        .hero-content h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            color: #0f2b3d;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #2c3e4e;
-            margin-bottom: 32px;
-            max-width: 550px;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 32px;
-            margin: 32px 0 24px;
-        }
-        .stat-item {
-            text-align: left;
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1e5a7a;
-        }
-        .hero-img {
-            flex: 0.8;
-            background: rgba(30,90,122,0.08);
-            border-radius: 48px;
-            padding: 20px;
-            text-align: center;
-        }
-        .hero-img i {
-            font-size: 180px;
+        .btn-outline:hover {
+            border-color: #2c8f6e;
             color: #2c8f6e;
-            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.1));
-        }
-        @media (max-width: 780px) {
-            .hero-content h2 { font-size: 2.2rem; }
-            .hero-img i { font-size: 120px; }
+            background: #f0fdf9;
         }
 
-        /* 作品/视频展示 */
-        .section {
-            padding: 70px 0;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #0f2b3d;
-        }
-        .section-sub {
-            text-align: center;
-            color: #4b6a7c;
-            max-width: 680px;
-            margin: 0 auto 48px;
-        }
+        /* 卡片网格 (源码教程用) */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 40px;
         }
-        .video-card {
+        .tutorial-card {
             background: white;
             border-radius: 28px;
             overflow: hidden;
             box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
             transition: all 0.25s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #eef2f8;
         }
-        .video-card:hover {
+        .tutorial-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 22px 30px -12px rgba(0,0,0,0.15);
-            border-color: #cbdde9;
         }
-        .card-thumb {
-            background: #d9e6f2;
+        .card-img {
             height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #1e5a7a;
+            background-size: cover;
+            background-position: center;
+            background-color: #d9e6f2;
             position: relative;
-        }
-        .play-overlay {
-            background: rgba(0,0,0,0.4);
-            width: 100%;
-            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: 0.2s;
         }
-        .video-card:hover .play-overlay {
-            opacity: 1;
-        }
-        .play-overlay i {
+        .card-img i {
             font-size: 48px;
-            color: white;
-            text-shadow: 0 2px 8px black;
+            color: rgba(30,90,122,0.7);
         }
         .card-info {
             padding: 20px;
+            flex: 1;
         }
         .card-info h3 {
             font-weight: 700;
@@ -310,31 +238,43 @@
         .card-info p {
             color: #4a5b6b;
             font-size: 0.9rem;
+            margin-bottom: 16px;
         }
-        .tag {
-            background: #eef2ff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
+        .card-links {
+            display: flex;
+            gap: 12px;
             margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .card-links a {
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+            background: #eff3f8;
+            padding: 5px 12px;
+            border-radius: 30px;
+            transition: 0.2s;
+            color: #1e5a7a;
+        }
+        .card-links a:hover {
+            background: #1e5a7a;
+            color: white;
         }
 
-        /* 团队板块 */
+        /* 开发人员卡片 */
         .team-flex {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 40px;
+            margin: 48px 0;
         }
         .member {
             text-align: center;
             background: white;
             padding: 28px 20px;
             border-radius: 32px;
-            width: 200px;
-            transition: 0.2s;
+            width: 220px;
             box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
         }
         .member i {
@@ -342,61 +282,44 @@
             color: #2c8f6e;
             margin-bottom: 16px;
         }
-        .member h4 {
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
 
-        /* 联系/动态区 */
-        .contact-card {
+        /* 粉丝群卡片 */
+        .group-card {
             background: linear-gradient(135deg, #eef6fc, #ffffff);
             border-radius: 48px;
             padding: 48px 32px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+            max-width: 700px;
+            margin: 40px auto;
             border: 1px solid rgba(30,90,122,0.2);
         }
-        .social-links {
+        .qr-place {
             display: flex;
             justify-content: center;
-            gap: 28px;
-            margin: 28px 0 24px;
+            gap: 40px;
             flex-wrap: wrap;
+            margin: 30px 0;
         }
-        .social-icon {
-            background: white;
-            width: 56px;
-            height: 56px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            font-size: 28px;
-            color: #1f3b4c;
-            transition: 0.2s;
-            box-shadow: 0 6px 12px -6px rgba(0,0,0,0.1);
-            text-decoration: none;
+        .qr-item {
+            text-align: center;
         }
-        .social-icon:hover {
-            transform: translateY(-5px);
-            background: #1e5a7a;
-            color: white;
+        .qr-icon {
+            font-size: 70px;
+            color: #1e5a7a;
+            margin-bottom: 12px;
         }
-
         footer {
             background: #0f1e26;
             color: #adb7c2;
             padding: 40px 0;
             text-align: center;
-            font-size: 0.85rem;
-            margin-top: 20px;
+            margin-top: 40px;
         }
-        .footer-heart {
-            color: #ff7e67;
-        }
-        @media (max-width: 640px) {
-            .nav-flex { flex-direction: column; text-align: center; }
-            .nav-links { flex-wrap: wrap; justify-content: center; }
+        @media (max-width: 780px) {
+            .nav-flex { flex-direction: column; }
+            .nav-tabs { order: 2; }
+            .bili-link-small { order: 3; }
+            .tab-btn { padding: 6px 16px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -404,256 +327,278 @@
 
 <nav class="navbar">
     <div class="container nav-flex">
-        <div class="logo-area">
-            <div class="logo-icon">
-                <i class="fas fa-microchip"></i>
-            </div>
+        <div class="logo-area" onclick="location.href='#'">
+            <!-- 根目录logo 1.png -->
+            <img src="1.png" alt="二中创客Logo" class="logo-img" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'logo-icon\' style=\'background:#1e5a7a;width:44px;height:44px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:white;\'><i class=\'fas fa-microchip\'></i></div>'+this.parentElement.innerHTML;">
             <div class="logo-text">
                 <h1>二中创客</h1>
-                <span>Erzhong Maker · 智造未来</span>
+                <span>Erzhong Maker · 开源创造未来</span>
             </div>
         </div>
-        <div class="nav-links">
-            <a href="#home">首页</a>
-            <a href="#creations">创客作品</a>
-            <a href="#team">创客团队</a>
-            <a href="#contact">联系</a>
-            <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-bili"><i class="fab fa-bilibili"></i> B站主页</a>
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="home">主页</button>
+            <button class="tab-btn" data-tab="tutorial">源码教程</button>
+            <button class="tab-btn" data-tab="developers">开发人员</button>
+            <button class="tab-btn" data-tab="fans">粉丝群</button>
         </div>
+        <a href="https://space.bilibili.com/3546561571194946" target="_blank" class="bili-link-small"><i class="fab fa-bilibili"></i> B站空间</a>
     </div>
 </nav>
 
-<main>
-    <!-- Hero 区域 / 主页介绍 -->
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-lightbulb"></i> 创新 · 分享 · 匠心
+<main class="container">
+    <!-- 主页板块 -->
+    <section id="home-section" class="page-section active-section">
+        <div style="padding: 40px 0 20px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px; justify-content: space-between;">
+                <div style="flex:1.2">
+                    <div style="background:#e2f0f7; display: inline-block; padding: 4px 14px; border-radius: 40px; font-size:0.8rem; font-weight:600; margin-bottom:20px;"><i class="fas fa-lightbulb"></i> 创新 · 开源 · 硬核</div>
+                    <h2 style="font-size:3rem; font-weight:800; line-height:1.2; letter-spacing:-1px; margin-bottom:20px;">用代码与硬件<br>点燃少年的创造力</h2>
+                    <p style="font-size:1.1rem; color:#2c3e4e; margin-bottom:32px;">「二中创客」—— 来自校园的极客团队。开源硬件、Python、AIoT 项目实战，陪你从零到一创造真实作品。</p>
+                    <div style="display: flex; gap: 20px; margin: 32px 0;">
+                        <div><span style="font-weight:800; font-size:2rem;">60+</span><br>原创项目</div>
+                        <div><span style="font-weight:800; font-size:2rem;">15w+</span><br>全网播放</div>
+                        <div><span style="font-weight:800; font-size:2rem;">7x24h</span><br>社群交流</div>
+                    </div>
+                    <button class="tab-btn btn-primary" data-tab="tutorial" style="background:#1e5a7a; color:white; padding:12px 28px;">🚀 浏览源码教程</button>
                 </div>
-                <h2>用代码与硬件<br>点燃少年的创造力</h2>
-                <p>「二中创客」—— 来自校园的硬核极客团队。开源硬件、Python、AIoT 项目实战，和你一起把奇思妙想变成现实作品。</p>
-                <div class="hero-stats">
-                    <div class="stat-item"><div class="stat-number">50+</div><div>原创项目</div></div>
-                    <div class="stat-item"><div class="stat-number">10w+</div><div>全网播放</div></div>
-                    <div class="stat-item"><div class="stat-number">24h</div><div>在线答疑</div></div>
-                </div>
-                <div>
-                    <a href="#creations" class="btn-primary"><i class="fas fa-play-circle"></i> 探索作品集</a>
-                    <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-outline" style="margin-left: 16px;"><i class="fab fa-bilibili"></i> 关注B站</a>
+                <div style="flex:0.8; text-align:center; background:rgba(30,90,122,0.05); border-radius:48px; padding:20px;">
+                    <i class="fas fa-microchip" style="font-size:160px; color:#2c8f6e;"></i>
                 </div>
             </div>
-            <div class="hero-img">
-                <i class="fas fa-robot"></i>
-                <!-- 装饰抽象图形 -->
-            </div>
+        </div>
+        <!-- 也可以加一些近期动态等，保持干净 -->
+    </section>
+
+    <!-- 源码教程板块：所有卡片图片、视频链接、下载文件路径由数据配置 -->
+    <section id="tutorial-section" class="page-section">
+        <div class="section-title">📚 源码教程 · 全开源分享</div>
+        <div class="section-sub">从智能小车到物联网时钟，每一个项目都提供源码、图纸和视频教程，跟着我们动手创造。</div>
+        <div id="tutorialGrid" class="card-grid">
+            <!-- 动态渲染js -->
+        </div>
+        <div style="text-align:center; margin-bottom: 60px;">
+            <a href="https://space.bilibili.com/3546561571194946" target="_blank" class="btn-outline"><i class="fab fa-bilibili"></i> 更多视频教程</a>
         </div>
     </section>
 
-    <!-- 精选视频 / 创客作品展示 直接映射B站视频 -->
-    <section id="creations" class="section">
-        <div class="container">
-            <div class="section-title">🔥 热门创客作品</div>
-            <div class="section-sub">从智能小车到物联网时钟，每一个项目都开源分享，陪你一起动手创造。</div>
-            <div class="card-grid" id="videoGrid">
-                <!-- 卡片会通过js动态生成，基于B站官方数据模拟实际作品，同时也便于后续替换 -->
-            </div>
-            <div style="text-align: center; margin-top: 48px;">
-                <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="btn-outline"><i class="fab fa-bilibili"></i> 前往B站观看全集</a>
-            </div>
+    <!-- 开发人员板块 -->
+    <section id="developers-section" class="page-section">
+        <div class="section-title">👩‍💻 创客核心开发人员</div>
+        <div class="section-sub">一群热爱技术、热衷开源的老师与学生，持续输出优质教程。</div>
+        <div class="team-flex">
+            <div class="member"><i class="fas fa-user-astronaut"></i><h4>刘老师</h4><p>主理人/全栈硬件</p><small>10年创客教育</small></div>
+            <div class="member"><i class="fas fa-laptop-code"></i><h4>陈同学</h4><p>嵌入式开发</p><small>Python/ESP32</small></div>
+            <div class="member"><i class="fas fa-cogs"></i><h4>张同学</h4><p>机械设计/3D打印</p><small>结构达人</small></div>
+            <div class="member"><i class="fas fa-cloud-sun"></i><h4>李同学</h4><p>物联网/前端</p><small>全栈创客</small></div>
+        </div>
+        <div style="text-align:center; margin: 20px 0 60px;">
+            <i class="fab fa-github"></i> 开源贡献 : github.com/erzhong-maker
         </div>
     </section>
 
-    <!-- 团队风采 -->
-    <section id="team" class="section" style="background: #f9fbfe;">
-        <div class="container">
-            <div class="section-title">✨ 创客核心团队</div>
-            <div class="section-sub">一群热爱开源、热衷折腾的老师与学生，把想法变成硬核作品。</div>
-            <div class="team-flex">
-                <div class="member"><i class="fas fa-user-astronaut"></i><h4>刘老师</h4><p>主理人/硬件架构</p><small>10年创客教育</small></div>
-                <div class="member"><i class="fas fa-laptop-code"></i><h4>陈同学</h4><p>嵌入式开发</p><small>Python/ESP32高手</small></div>
-                <div class="member"><i class="fas fa-cogs"></i><h4>张同学</h4><p>机械设计/3D打印</p><small>结构达人</small></div>
-                <div class="member"><i class="fas fa-video"></i><h4>二中创客小编</h4><p>视频运营/剪辑</p><small>记录创造过程</small></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系与社区动态 -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="contact-card">
-                <i class="fas fa-paper-plane" style="font-size: 42px; color:#1e5a7a; margin-bottom: 10px; display: inline-block;"></i>
-                <h3 style="font-size: 1.8rem; margin: 12px 0;">一起创客，共同成长</h3>
-                <p style="max-width: 500px; margin: 0 auto 20px;">关注B站获取最新教程，加入社群交流技术，你的每个想法都值得实现。</p>
-                <div class="social-links">
-                    <a href="https://space.bilibili.com/3537120958662352" target="_blank" class="social-icon"><i class="fab fa-bilibili"></i></a>
-                    <a href="https://github.com/erzhongmaker" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="mailto:maker@erzhong.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-                    <a href="#" class="social-icon" id="copyWechatBtn"><i class="fab fa-weixin"></i></a>
+    <!-- 粉丝群板块 -->
+    <section id="fans-section" class="page-section">
+        <div class="group-card">
+            <i class="fas fa-users" style="font-size: 48px; color:#1e5a7a;"></i>
+            <h3 style="font-size:2rem; margin:16px 0;">加入粉丝群 · 共同成长</h3>
+            <p>遇到问题？一起探讨创意。QQ群、微信群随时欢迎你的加入。</p>
+            <div class="qr-place">
+                <div class="qr-item">
+                    <div class="qr-icon"><i class="fab fa-qq"></i></div>
+                    <p><strong>QQ群：887123456</strong></p>
+                    <button class="btn-outline" id="copyQQBtn" style="margin-top:8px;">复制群号</button>
                 </div>
-                <p style="margin-top: 16px;"><i class="fas fa-qrcode"></i> 微信公众号：二中创客空间 | QQ群：887123456</p>
-                <button class="btn-primary" id="githubDeployHint" style="margin-top: 24px; background:#2c3e50;"><i class="fab fa-github"></i> 部署在 GitHub Pages</button>
+                <div class="qr-item">
+                    <div class="qr-icon"><i class="fab fa-weixin"></i></div>
+                    <p><strong>微信公众号：二中创客空间</strong></p>
+                    <button class="btn-outline" id="copyWechatBtn">复制公众号</button>
+                </div>
             </div>
+            <p style="margin-top: 20px;"><i class="fas fa-envelope"></i> 商务/合作: maker@erzhong.com</p>
         </div>
     </section>
 </main>
 
 <footer>
     <div class="container">
-        <p>© 2025 二中创客 · 让创造发生 | 本官网已适配 GitHub Pages 一键部署 </p>
-        <p style="margin-top: 10px; font-size: 0.75rem;">🚀 开源精神 | 所有教程均可在B站获取源码 </p>
-        <p><i class="fas fa-heart footer-heart"></i> 始于热爱，忠于创新</p>
+        <p>© 2025 二中创客 · 让创造发生 | 本站支持GitHub Pages部署，所有教程开源</p>
+        <p><i class="fas fa-heart" style="color:#ff7e67;"></i> 始于热爱，忠于创新，与万千创客同行</p>
     </div>
 </footer>
 
 <script>
-    // B站空间ID 视频模拟展示 ———— 为了展示官网活力，我们嵌入几个代表性作品卡片
-    // 数据基于「二中创客」虚拟或真实项目，实际可替换为调用B站API（因跨域限制，展示静态样例，链接指向主页合集）
-    const worksData = [
+    // ---------- 源码教程数据配置区 ----------
+    // 请在这里配置你的教程卡片，每个卡片包含: 图片路径(imgPath), 视频链接(videoUrl), 下载文件路径(downloadUrl), 标题, 描述
+    const tutorialsData = [
         {
-            title: "【保姆级教程】ESP32智能小车DIY",
-            desc: "从零搭建避障小车，附代码和电路图，开源共享！",
-            bvid: "BV1T84y1B7Xe",
-            coverIcon: "fa-car-side",
-            url: "https://www.bilibili.com/video/BV1T84y1B7Xe"
+            title: "ESP32智能小车 · 全开源",
+            description: "从零搭建避障小车，包含源码、电路图、3D打印件。",
+            imgPath: "assets/car_thumb.jpg",      // 根目录下的图片，例如 images/car.jpg 或留空显示图标
+            videoUrl: "https://www.bilibili.com/video/BV1T84y1B7Xe",  // 视频链接
+            downloadUrl: "files/esp32_car_source.zip"   // 下载文件相对根目录的路径
         },
         {
-            title: "基于树莓派的人脸识别门禁系统",
-            desc: "Python+OpenCV，校园创客项目实战，已落地应用。",
-            bvid: "BV1gV4y1v7kF",
-            coverIcon: "fa-face-smile",
-            url: "https://www.bilibili.com/video/BV1gV4y1v7kF"
+            title: "人脸识别门禁系统",
+            description: "Python+OpenCV，树莓派项目，提供训练代码与硬件清单。",
+            imgPath: "assets/face_thumb.png",
+            videoUrl: "https://www.bilibili.com/video/BV1gV4y1v7kF",
+            downloadUrl: "files/face_recognition_code.zip"
         },
         {
-            title: "物联网天气时钟 | 全开源制作",
-            desc: "使用ESP8266与OLED屏幕，实时显示温湿度。",
-            bvid: "BV1hY411h7Jc",
-            coverIcon: "fa-cloud-sun",
-            url: "https://www.bilibili.com/video/BV1hY411h7Jc"
+            title: "物联网天气时钟",
+            description: "ESP8266 + OLED 显示温湿度，开源API接口。",
+            imgPath: "assets/weather_clock.jpg",
+            videoUrl: "https://www.bilibili.com/video/BV1hY411h7Jc",
+            downloadUrl: "files/esp8266_weather.zip"
         },
         {
-            title: "Arduino智能垃圾桶（自动开盖）",
-            desc: "超简单传感器应用，适合新手入门。",
-            bvid: "BV1ZZ4y1c7Sd",
-            coverIcon: "fa-trash-can",
-            url: "https://www.bilibili.com/video/BV1ZZ4y1c7Sd"
+            title: "Arduino智能垃圾桶",
+            description: "超声波传感器自动开盖，新手友好，附带接线图。",
+            imgPath: "assets/trash_bin.png",
+            videoUrl: "https://www.bilibili.com/video/BV1ZZ4y1c7Sd",
+            downloadUrl: "files/arduino_bin_code.zip"
         },
         {
-            title: "3D打印 + 机械臂 迷你抓娃娃机",
-            desc: "结构设计全过程，从建模到组装。",
-            bvid: "BV1j34y1Z7Pd",
-            coverIcon: "fa-gamepad",
-            url: "https://www.bilibili.com/video/BV1j34y1Z7Pd"
+            title: "3D打印机械臂",
+            description: "六自由度机械臂，全结构STL文件 + 控制源码。",
+            imgPath: "assets/robot_arm.jpg",
+            videoUrl: "https://www.bilibili.com/video/BV1j34y1Z7Pd",
+            downloadUrl: "files/robot_arm_3d.zip"
         },
         {
-            title: "Micro:bit 互动游戏设计合集",
-            desc: "用图形化编程快速开发小游戏。",
-            bvid: "BV1tX4y1c7gF",
-            coverIcon: "fa-puzzle-piece",
-            url: "https://www.bilibili.com/video/BV1tX4y1c7gF"
+            title: "Micro:bit 互动游戏合集",
+            description: "图形化编程+MakeCode，可直接烧录。",
+            imgPath: "assets/microbit_game.jpg",
+            videoUrl: "https://www.bilibili.com/video/BV1tX4y1c7gF",
+            downloadUrl: "files/microbit_games.hex"
         }
     ];
 
-    function renderVideoCards() {
-        const grid = document.getElementById('videoGrid');
+    // 渲染源码教程卡片
+    function renderTutorials() {
+        const grid = document.getElementById('tutorialGrid');
         if (!grid) return;
         grid.innerHTML = '';
-        worksData.forEach(video => {
-            const card = document.createElement('a');
-            card.href = video.url;
-            card.target = '_blank';
-            card.className = 'video-card';
-            // 内嵌html结构
+        tutorialsData.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'tutorial-card';
+            // 处理图片背景 如果图片路径不存在或者为空则用图标占位
+            let imageHtml = '';
+            if (t.imgPath && t.imgPath.trim() !== '') {
+                imageHtml = `<div class="card-img" style="background-image: url('${t.imgPath}'); background-size: cover; background-position: center;"></div>`;
+            } else {
+                imageHtml = `<div class="card-img" style="background:#e9f0f5; justify-content:center; align-items:center; display:flex;"><i class="fas fa-file-code fa-3x" style="color:#1e5a7a;"></i></div>`;
+            }
+            // 构建链接区域
+            let linksHtml = `<div class="card-links">`;
+            if (t.videoUrl) linksHtml += `<a href="${t.videoUrl}" target="_blank"><i class="fab fa-bilibili"></i> 视频教程</a>`;
+            if (t.downloadUrl) linksHtml += `<a href="${t.downloadUrl}" download><i class="fas fa-download"></i> 源码/文件</a>`;
+            linksHtml += `</div>`;
+            
             card.innerHTML = `
-                <div class="card-thumb">
-                    <i class="fas ${video.coverIcon} fa-4x"></i>
-                    <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
-                </div>
+                ${imageHtml}
                 <div class="card-info">
-                    <h3>${escapeHtml(video.title)}</h3>
-                    <p>${escapeHtml(video.desc)}</p>
-                    <span class="tag"><i class="fab fa-bilibili"></i> 观看完整视频</span>
+                    <h3>${escapeHtml(t.title)}</h3>
+                    <p>${escapeHtml(t.description)}</p>
+                    ${linksHtml}
                 </div>
             `;
             grid.appendChild(card);
         });
     }
 
-    // 简单防XSS
+    // 防XSS辅助
     function escapeHtml(str) {
         return str.replace(/[&<>]/g, function(m) {
             if (m === '&') return '&amp;';
             if (m === '<') return '&lt;';
             if (m === '>') return '&gt;';
             return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
         });
     }
 
-    // 模拟微信公众号复制提示 (微信提示)
-    const copyWechat = document.getElementById('copyWechatBtn');
-    if (copyWechat) {
-        copyWechat.addEventListener('click', (e) => {
-            e.preventDefault();
-            // 模拟复制公众号名称
-            const dummy = document.createElement('textarea');
-            dummy.value = '二中创客空间';
-            document.body.appendChild(dummy);
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-            alert('✅ 公众号名称“二中创客空间”已复制，打开微信搜索关注！');
+    // 选项卡切换逻辑 + 锚点记忆
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = {
+        home: document.getElementById('home-section'),
+        tutorial: document.getElementById('tutorial-section'),
+        developers: document.getElementById('developers-section'),
+        fans: document.getElementById('fans-section')
+    };
+
+    function switchTab(tabId) {
+        // 更新按钮样式
+        tabs.forEach(btn => {
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
         });
+        // 显示对应区块
+        Object.keys(sections).forEach(key => {
+            if (sections[key]) {
+                if (key === tabId) sections[key].classList.add('active-section');
+                else sections[key].classList.remove('active-section');
+            }
+        });
+        // 滚动到顶部让视觉舒服
+        window.scrollTo({ top: 80, behavior: 'smooth' });
     }
 
-    // GitHub Pages 部署提示
-    const githubBtn = document.getElementById('githubDeployHint');
-    if (githubBtn) {
-        githubBtn.addEventListener('click', () => {
-            alert(`🚀 部署指南：\n1. 将此项目文件夹上传至GitHub仓库\n2. 仓库名称为 用户名.github.io 或 开启Pages功能\n3. 在Settings -> Pages 选择分支 main/docs 即可访问\n目前该网页已完全静态化，适合部署！\n建议将B站链接换成真实的UID: 3537120958662352`);
-        });
-    }
-
-    // 平滑滚动
-    document.querySelectorAll('.nav-links a, .btn-primary[href="#creations"], a[href="#home"], a[href="#team"], a[href="#contact"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else if (targetId === 'home') {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
+    tabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabId = btn.getAttribute('data-tab');
+            if (tabId && sections[tabId]) {
+                switchTab(tabId);
             }
         });
     });
 
-    // 动态更新B站链接为实际展示（本页面所有B站链接已正确指向 space 及 模拟视频）
-    // 同时也可以修正真实B站空间地址，确保所有链接一致
-    const biliSpaceURL = "https://space.bilibili.com/3537120958662352";
-    const allBiliBtns = document.querySelectorAll('.btn-bili, .btn-outline[href*="bilibili.com"]');
-    allBiliBtns.forEach(btn => {
-        if (btn.getAttribute('href') && btn.getAttribute('href').includes('space.bilibili.com')) {
-            // 已经是正确链接则不干预，但部分可能是示例链接，确保最终实效
-            if(btn.getAttribute('href') !== biliSpaceURL && btn.getAttribute('href').includes('space.bilibili.com')) {
-                btn.setAttribute('href', biliSpaceURL);
-            }
+    // 主页里“浏览源码教程”按钮事件
+    const browseBtn = document.querySelector('[data-tab="tutorial"].btn-primary');
+    if (browseBtn) {
+        browseBtn.addEventListener('click', () => switchTab('tutorial'));
+    }
+    // 若有其他按钮触发
+    document.querySelectorAll('[data-tab]').forEach(el => {
+        if(el.classList.contains('btn-primary') || el.classList.contains('tab-btn')) {
+            // 已经处理过tab-btn，但是为了防止重复绑定跳过已有的监听；简单处理二次绑定无碍
         }
     });
-    // 额外修正第一个按钮中的具体空间链接
-    const specificBili = document.querySelector('.hero-content .btn-outline');
-    if(specificBili && specificBili.getAttribute('href').includes('space')) {
-        specificBili.setAttribute('href', biliSpaceURL);
-    }
-    
-    renderVideoCards();
 
-    // 控制台输出友好信息
-    console.log("二中创客官网已加载 —— 创客精神，无限可能 | 部署于GitHub Pages完美展示");
+    // 粉丝群复制功能
+    const copyQQ = document.getElementById('copyQQBtn');
+    if (copyQQ) {
+        copyQQ.addEventListener('click', () => {
+            navigator.clipboard.writeText('887123456').then(() => alert('✅ QQ群号 887123456 已复制，打开QQ添加群聊！')).catch(() => alert('手动复制: 887123456'));
+        });
+    }
+    const copyWechat = document.getElementById('copyWechatBtn');
+    if (copyWechat) {
+        copyWechat.addEventListener('click', () => {
+            navigator.clipboard.writeText('二中创客空间').then(() => alert('✅ 公众号名称“二中创客空间”已复制，打开微信搜索关注')).catch(() => alert('复制失败，可手动搜索'));
+        });
+    }
+
+    // 初始化渲染教程 + 如果logo加载失败备用处理已在img上写好, 另外更新所有B站链接为最新地址
+    const biliNewSpace = "https://space.bilibili.com/3546561571194946";
+    document.querySelectorAll('.bili-link-small, a[href*="space.bilibili.com"]').forEach(link => {
+        if (link.getAttribute('href') && link.getAttribute('href').includes('space.bilibili.com')) {
+            link.setAttribute('href', biliNewSpace);
+        }
+    });
+    // 额外确保“更多视频教程”链接正确
+    const moreVideoLink = document.querySelector('#tutorial-section .btn-outline');
+    if(moreVideoLink && moreVideoLink.getAttribute('href') === 'https://space.bilibili.com/3546561571194946') {
+        // 已经是正确链接，不需要改动
+    } else if (moreVideoLink) {
+        moreVideoLink.setAttribute('href', biliNewSpace);
+    }
+
+    // 如果图片资源不存在，fallback
+    renderTutorials();
+    console.log("官网已升级：选项卡、源码教程配置区已准备就绪，可在 tutorialsData 中自定义图片/视频/下载路径");
 </script>
 </body>
 </html>

@@ -377,19 +377,19 @@
             <!-- 动态渲染js -->
         </div>
         <div style="text-align:center; margin-bottom: 60px;">
-            <a href="https://space.bilibili.com/3546561571194946" target="_blank" class="btn-outline"><i class="fab fa-bilibili"></i> 更多视频教程</a>
+            <a href="https://space.bilibili.com/3546561571194946" target="_blank" class="btn-outline"><i class="fab fa-bilibili"></i> 哔哩哔哩主页</a>
         </div>
     </section>
 
     <!-- 开发人员板块 -->
     <section id="developers-section" class="page-section">
         <div class="section-title">👩‍💻 创客核心开发人员</div>
-        <div class="section-sub">一群热爱技术、热衷开源的老师与学生，持续输出优质教程。</div>
+        <div class="section-sub">一群热爱技术、热衷开源的学生，持续输出优质教程。</div>
         <div class="team-flex">
-            <div class="member"><i class="fas fa-user-astronaut"></i><h4>刘老师</h4><p>主理人/全栈硬件</p><small>10年创客教育</small></div>
-            <div class="member"><i class="fas fa-laptop-code"></i><h4>陈同学</h4><p>嵌入式开发</p><small>Python/ESP32</small></div>
-            <div class="member"><i class="fas fa-cogs"></i><h4>张同学</h4><p>机械设计/3D打印</p><small>结构达人</small></div>
-            <div class="member"><i class="fas fa-cloud-sun"></i><h4>李同学</h4><p>物联网/前端</p><small>全栈创客</small></div>
+            <div class="member"><i class="fas fa-user-astronaut"></i><h4>文文</h4><p>主理人/c++</p><small>学生</small></div>
+            <div class="member"><i class="fas fa-laptop-code"></i><h4>轩子</h4><p>开发芯片研究</p><small>学生</small></div>
+            <div class="member"><i class="fas fa-cogs"></i><h4>腾腾</h4><p>视频剪辑</p><small>学生</small></div>
+            <div class="member"><i class="fas fa-cloud-sun"></i><h4>浩宇</h4><p>python前端</p><small>学生</small></div>
         </div>
         <div style="text-align:center; margin: 20px 0 60px;">
             <i class="fab fa-github"></i> 开源贡献 : github.com/erzhong-maker
@@ -405,13 +405,13 @@
             <div class="qr-place">
                 <div class="qr-item">
                     <div class="qr-icon"><i class="fab fa-qq"></i></div>
-                    <p><strong>QQ群：887123456</strong></p>
+                    <p><strong>QQ群：1102636518</strong></p>
                     <button class="btn-outline" id="copyQQBtn" style="margin-top:8px;">复制群号</button>
                 </div>
                 <div class="qr-item">
                     <div class="qr-icon"><i class="fab fa-weixin"></i></div>
-                    <p><strong>微信公众号：二中创客空间</strong></p>
-                    <button class="btn-outline" id="copyWechatBtn">复制公众号</button>
+                    <p><strong>微信公众号：正在注册</strong></p>
+                    <button class="btn-outline" id="copyWechatBtn">测试按钮</button>
                 </div>
             </div>
             <p style="margin-top: 20px;"><i class="fas fa-envelope"></i> 商务/合作: maker@erzhong.com</p>
@@ -421,8 +421,8 @@
 
 <footer>
     <div class="container">
-        <p>© 2025 二中创客 · 让创造发生 | 本站支持GitHub Pages部署，所有教程开源</p>
-        <p><i class="fas fa-heart" style="color:#ff7e67;"></i> 始于热爱，忠于创新，与万千创客同行</p>
+        <p>© 二中创客 · 让创造发生 </p>
+        <p><i class="fas fa-heart" style="color:#ff7e67;"></i> 始于热爱，忠于创新</p>
     </div>
 </footer>
 
@@ -574,19 +574,19 @@
     const copyQQ = document.getElementById('copyQQBtn');
     if (copyQQ) {
         copyQQ.addEventListener('click', () => {
-            navigator.clipboard.writeText('887123456').then(() => alert('✅ QQ群号 887123456 已复制，打开QQ添加群聊！')).catch(() => alert('手动复制: 887123456'));
+            navigator.clipboard.writeText('1102636518').then(() => alert('✅ QQ群号 1102636518 已复制，打开QQ添加群聊！')).catch(() => alert('手动复制:1102636518'));
         });
     }
     const copyWechat = document.getElementById('copyWechatBtn');
     if (copyWechat) {
         copyWechat.addEventListener('click', () => {
-            navigator.clipboard.writeText('二中创客空间').then(() => alert('✅ 公众号名称“二中创客空间”已复制，打开微信搜索关注')).catch(() => alert('复制失败，可手动搜索'));
+            navigator.clipboard.writeText('01234567910').then(() => alert('✅ 测试完成')).catch(() => alert('复制失败，可手动搜索'));
         });
     }
 
     // 初始化渲染教程
     renderTutorials();
-    console.log("官网已升级：选项卡、源码教程配置区已准备就绪");
+    console.log("二中创客官网");
 </script>
 </body>
 </html>

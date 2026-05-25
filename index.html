@@ -195,7 +195,7 @@
         /* 卡片网格 (源码教程用) */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -239,6 +239,7 @@
             color: #4a5b6b;
             font-size: 0.9rem;
             margin-bottom: 16px;
+            line-height: 1.4;
         }
         .card-links {
             display: flex;
@@ -366,7 +367,6 @@
                 </div>
             </div>
         </div>
-        <!-- 也可以加一些近期动态等，保持干净 -->
     </section>
 
     <!-- 源码教程板块：所有卡片图片、视频链接、下载文件路径由数据配置 -->
@@ -429,48 +429,49 @@
 <script>
     // ---------- 源码教程数据配置区 ----------
     // 请在这里配置你的教程卡片，每个卡片包含: 图片路径(imgPath), 视频链接(videoUrl), 下载文件路径(downloadUrl), 标题, 描述
+    // 注意：如果某个字段不需要，请直接删除该行（不要留空或加#号）
     const tutorialsData = [
         {
             title: "实验1，流水灯实验",
             description: "开发板arduino UNO。Led灯，还有这个线，还有正负极，注意不要接错。会烧掉电阻的欧姆数也不要太大，也不要太小，太小带不动，太大了，嗯可能会烧。",
-            imgPath: "assets/jsd.png",      // 根目录下的图片，例如 images/car.jpg 或留空显示图标
-            videoUrl: "https://www.bilibili.com/video/BV1H9Gx6LEfj/?spm_id_from=333.1387.homepage.video_card.click&vd_source=3b9827ec99a9b36b463caf118b63361c",  // 视频链接
-            downloadUrl: "files/流水灯实验.zip"   // 下载文件相对根目录的路径
+            imgPath: "assets/jsd.png",
+            videoUrl: "https://www.bilibili.com/video/BV1H9Gx6LEfj/",
+            downloadUrl: "files/流水灯实验.zip"
         },
         {
             title: "待上新",
-            description: "待上新",
-            imgPath: "assets/face_thumb.png",
-           #videoUrl: "https://www.bilibili.com/video/BV1gV4y1v7kF",
-           #downloadUrl: "files/face_recognition_code.zip"
+            description: "更多精彩教程正在制作中，敬请期待...",
+            imgPath: "",
+            videoUrl: "",
+            downloadUrl: ""
         },
         {
             title: "待上新",
-            description: "待上新",
-            imgPath: "assets/weather_clock.jpg",
-           #videoUrl: "https://www.bilibili.com/video/BV1hY411h7Jc",
-           #downloadUrl: "files/esp8266_weather.zip"
+            description: "更多精彩教程正在制作中，敬请期待...",
+            imgPath: "",
+            videoUrl: "",
+            downloadUrl: ""
         },
         {
             title: "待上新",
-            description: "待上新",
-            imgPath: "assets/trash_bin.png",
-           #videoUrl: "https://www.bilibili.com/video/BV1ZZ4y1c7Sd",
-           #downloadUrl: "files/arduino_bin_code.zip"
+            description: "更多精彩教程正在制作中，敬请期待...",
+            imgPath: "",
+            videoUrl: "",
+            downloadUrl: ""
         },
         {
             title: "待上新",
-            description: "待上新",
-            imgPath: "assets/robot_arm.jpg",
-           # videoUrl: "https://www.bilibili.com/video/BV1j34y1Z7Pd",
-           # downloadUrl: "files/robot_arm_3d.zip"
+            description: "更多精彩教程正在制作中，敬请期待...",
+            imgPath: "",
+            videoUrl: "",
+            downloadUrl: ""
         },
         {
             title: "待上新",
-            description: "待上新",
-            imgPath: "assets/microbit_game.jpg",
-           #videoUrl: "https://www.bilibili.com/video/BV1tX4y1c7gF",
-           #downloadUrl: "files/microbit_games.hex"
+            description: "更多精彩教程正在制作中，敬请期待...",
+            imgPath: "",
+            videoUrl: "",
+            downloadUrl: ""
         }
     ];
 
@@ -489,11 +490,19 @@
             } else {
                 imageHtml = `<div class="card-img" style="background:#e9f0f5; justify-content:center; align-items:center; display:flex;"><i class="fas fa-file-code fa-3x" style="color:#1e5a7a;"></i></div>`;
             }
-            // 构建链接区域
+            // 构建链接区域（只有当链接存在时才显示）
             let linksHtml = `<div class="card-links">`;
-            if (t.videoUrl) linksHtml += `<a href="${t.videoUrl}" target="_blank"><i class="fab fa-bilibili"></i> 视频教程</a>`;
-            if (t.downloadUrl) linksHtml += `<a href="${t.downloadUrl}" download><i class="fas fa-download"></i> 源码/文件</a>`;
+            if (t.videoUrl && t.videoUrl.trim() !== '') {
+                linksHtml += `<a href="${t.videoUrl}" target="_blank"><i class="fab fa-bilibili"></i> 视频教程</a>`;
+            }
+            if (t.downloadUrl && t.downloadUrl.trim() !== '') {
+                linksHtml += `<a href="${t.downloadUrl}" download><i class="fas fa-download"></i> 源码/文件</a>`;
+            }
             linksHtml += `</div>`;
+            // 如果没有链接，显示“即将上线”
+            if ((!t.videoUrl || t.videoUrl === '') && (!t.downloadUrl || t.downloadUrl === '')) {
+                linksHtml = `<div class="card-links"><span style="font-size:0.8rem; color:#94a3b8;">⏳ 教程即将上线</span></div>`;
+            }
             
             card.innerHTML = `
                 ${imageHtml}
@@ -517,7 +526,7 @@
         });
     }
 
-    // 选项卡切换逻辑 + 锚点记忆
+    // 选项卡切换逻辑
     const tabs = document.querySelectorAll('.tab-btn');
     const sections = {
         home: document.getElementById('home-section'),
@@ -542,7 +551,7 @@
                 else sections[key].classList.remove('active-section');
             }
         });
-        // 滚动到顶部让视觉舒服
+        // 滚动到顶部
         window.scrollTo({ top: 80, behavior: 'smooth' });
     }
 
@@ -560,12 +569,6 @@
     if (browseBtn) {
         browseBtn.addEventListener('click', () => switchTab('tutorial'));
     }
-    // 若有其他按钮触发
-    document.querySelectorAll('[data-tab]').forEach(el => {
-        if(el.classList.contains('btn-primary') || el.classList.contains('tab-btn')) {
-            // 已经处理过tab-btn，但是为了防止重复绑定跳过已有的监听；简单处理二次绑定无碍
-        }
-    });
 
     // 粉丝群复制功能
     const copyQQ = document.getElementById('copyQQBtn');
@@ -581,24 +584,9 @@
         });
     }
 
-    // 初始化渲染教程 + 如果logo加载失败备用处理已在img上写好, 另外更新所有B站链接为最新地址
-    const biliNewSpace = "https://space.bilibili.com/3546561571194946";
-    document.querySelectorAll('.bili-link-small, a[href*="space.bilibili.com"]').forEach(link => {
-        if (link.getAttribute('href') && link.getAttribute('href').includes('space.bilibili.com')) {
-            link.setAttribute('href', biliNewSpace);
-        }
-    });
-    // 额外确保“更多视频教程”链接正确
-    const moreVideoLink = document.querySelector('#tutorial-section .btn-outline');
-    if(moreVideoLink && moreVideoLink.getAttribute('href') === 'https://space.bilibili.com/3546561571194946') {
-        // 已经是正确链接，不需要改动
-    } else if (moreVideoLink) {
-        moreVideoLink.setAttribute('href', biliNewSpace);
-    }
-
-    // 如果图片资源不存在，fallback
+    // 初始化渲染教程
     renderTutorials();
-    console.log("官网已升级：选项卡、源码教程配置区已准备就绪，可在 tutorialsData 中自定义图片/视频/下载路径");
+    console.log("官网已升级：选项卡、源码教程配置区已准备就绪");
 </script>
 </body>
 </html>

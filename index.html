@@ -261,6 +261,19 @@
             background: #1e5a7a;
             color: white;
         }
+        /* 即将上线按钮样式（不可点击） */
+        .btn-coming {
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: #f1f3f5;
+            padding: 5px 12px;
+            border-radius: 30px;
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: default;
+        }
 
         /* 开发人员卡片 */
         .team-flex {
@@ -429,7 +442,6 @@
 <script>
     // ---------- 源码教程数据配置区 ----------
     // 每个卡片包含: 图片路径(imgPath), 视频链接(videoUrl), 下载文件路径(downloadUrl), 标题, 描述
-    // videoUrl 和 downloadUrl 填写后会自动显示对应按钮
     const tutorialsData = [
         {
             title: "实验1，流水灯实验",
@@ -450,7 +462,7 @@
             description: "基于物联网的智能家居控制系统，可远程控制家电、实时监测环境数据。",
             imgPath: "assets/smart_home.png",
             videoUrl: "",  // 👈 填入B站视频链接后，视频教程按钮就会显示
-            downloadUrl: "files/智能家居.zip"  // 👈 源码/文件按钮
+            downloadUrl: "files/智能家居.zip"
         },
         {
             title: "待上新",
@@ -494,18 +506,23 @@
             
             // 构建链接区域 - 根据数据自动显示按钮
             let linksHtml = `<div class="card-links">`;
+            
+            // 有视频链接 → 显示视频教程按钮
             if (t.videoUrl && t.videoUrl.trim() !== '') {
                 linksHtml += `<a href="${t.videoUrl}" target="_blank"><i class="fab fa-bilibili"></i> 视频教程</a>`;
             }
+            
+            // 有下载链接 → 显示源码/文件按钮
             if (t.downloadUrl && t.downloadUrl.trim() !== '') {
                 linksHtml += `<a href="${t.downloadUrl}" download><i class="fas fa-download"></i> 源码/文件</a>`;
             }
-            linksHtml += `</div>`;
             
-            // 如果两个链接都没有，显示“即将上线”
+            // 如果两个链接都没有（待上新状态）→ 显示「即将上线」按钮样式
             if ((!t.videoUrl || t.videoUrl === '') && (!t.downloadUrl || t.downloadUrl === '')) {
-                linksHtml = `<div class="card-links"><span style="font-size:0.8rem; color:#94a3b8;">⏳ 教程即将上线</span></div>`;
+                linksHtml += `<span class="btn-coming"><i class="fas fa-clock"></i> 即将上线</span>`;
             }
+            
+            linksHtml += `</div>`;
             
             card.innerHTML = `
                 ${imageHtml}
@@ -586,7 +603,7 @@
 
     // 初始化渲染教程
     renderTutorials();
-    console.log("二中创客官网 - 已包含语音开关灯和智能家居教程");
+    console.log("二中创客官网 - 待上新卡片已改为「即将上线」按钮样式");
 </script>
 </body>
 </html>

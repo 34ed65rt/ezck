@@ -247,6 +247,7 @@
             margin-top: 12px;
             flex-wrap: wrap;
         }
+        /* 可点击按钮样式 */
         .card-links a {
             font-size: 0.8rem;
             text-decoration: none;
@@ -261,7 +262,7 @@
             background: #1e5a7a;
             color: white;
         }
-        /* 即将上线按钮样式（不可点击） */
+        /* 即将上线按钮样式（不可点击，但保持按钮外观） */
         .btn-coming {
             font-size: 0.8rem;
             font-weight: 600;
@@ -507,17 +508,17 @@
             // 构建链接区域 - 根据数据自动显示按钮
             let linksHtml = `<div class="card-links">`;
             
-            // 有视频链接 → 显示视频教程按钮
+            // 有视频链接 → 显示视频教程按钮（可点击）
             if (t.videoUrl && t.videoUrl.trim() !== '') {
                 linksHtml += `<a href="${t.videoUrl}" target="_blank"><i class="fab fa-bilibili"></i> 视频教程</a>`;
             }
             
-            // 有下载链接 → 显示源码/文件按钮
+            // 有下载链接 → 显示源码/文件按钮（可点击）
             if (t.downloadUrl && t.downloadUrl.trim() !== '') {
                 linksHtml += `<a href="${t.downloadUrl}" download><i class="fas fa-download"></i> 源码/文件</a>`;
             }
             
-            // 如果两个链接都没有（待上新状态）→ 显示「即将上线」按钮样式
+            // 如果两个链接都没有（待上新状态）→ 显示「即将上线」按钮样式（不可点击，但保持按钮外观）
             if ((!t.videoUrl || t.videoUrl === '') && (!t.downloadUrl || t.downloadUrl === '')) {
                 linksHtml += `<span class="btn-coming"><i class="fas fa-clock"></i> 即将上线</span>`;
             }
@@ -603,7 +604,7 @@
 
     // 初始化渲染教程
     renderTutorials();
-    console.log("二中创客官网 - 待上新卡片已改为「即将上线」按钮样式");
+    console.log("二中创客官网 - 所有卡片都显示为按钮样式");
 </script>
 </body>
 </html>
